@@ -1,8 +1,8 @@
-<x-app-layout>
+<x-app-layout title="Home Page">
     <div>
     <!-- Life is available only in the present moment. - Thich Nhat Hanh -->
     <h1>This the home button of the marketplace</h1>
-</div>
+    </div>
 
 </x-app-layout>
 
