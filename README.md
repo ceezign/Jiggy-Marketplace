@@ -1,4 +1,4 @@
-# 🛒 Marketplace
+# 🛒 MarketplaceX
 
 A simple web platform where users can post items for sale and buyers can browse and purchase items.  
 Built with Laravel, HTML, CSS, and PostgreSQL for reliable storage.
