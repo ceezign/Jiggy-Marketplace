@@ -1,7 +1,7 @@
 <header class="mp-header">
   <div class="mp-container">
     <!-- Logo -->
-    <a href="#" class="mp-logo">Marketplace</a>
+    <a href="#" class="mp-logo">Jiggy-Marketplace</a>
 
     <!-- Search (desktop only) -->
     <form class="mp-search" action="#" method="GET">
@@ -52,4 +52,7 @@
     <a href="#">Orders</a>
     <a href="#">Logout</a>
   </div>
+
+
 </header>
+

@@ -6,7 +6,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="mp-footer-logo-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path d="M12 2l9 4.5v11L12 22 3 17.5v-11L12 2z"/>
         </svg>
-        <span>Marketplace</span>
+        <span>Jiggy-Marketplace</span>
       </a>
       <p class="mp-footer-text">
         Buy, sell, and discover great deals on cars, products, and more — all in one place.

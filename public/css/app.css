@@ -303,3 +303,187 @@ a { text-decoration: none; color: inherit; }
 .mp-footer-socials a:hover {
   color: #6ee7b7;
 }
+
+
+
+
+
+
+
+
+
+/* General */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0f172a; /* dark navy */
+    color: #f1f5f9; /* light gray text */
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #1e293b, #0f172a); /* dark gradient */
+    color: #f1f5f9;
+    text-align: center;
+    padding: 80px 20px;
+}
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #22c55e; /* green accent */
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #cbd5e1;
+}
+.search-form {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.search-form input {
+    padding: 10px;
+    width: 70%;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+    color: #0f172a;
+}
+.search-form button {
+    padding: 10px 20px;
+    border: none;
+    background: #22c55e; /* green button */
+    color: white;
+    font-weight: bold;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+}
+.search-form button:hover {
+    background: #16a34a; /* darker green */
+}
+
+/* Categories */
+.categories {
+    padding: 60px 20px;
+    background: #1e293b; /* dark slate */
+    text-align: center;
+}
+.categories h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #22c55e; /* green accent */
+}
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+.category-card {
+    background: #0f172a;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    color: #f1f5f9;
+}
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+.category-card img {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+/* Featured Listings */
+.featured {
+    padding: 60px 20px;
+    background: #0f172a;
+}
+.featured h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #22c55e; /* green accent */
+}
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+.featured-card {
+    background: #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+.featured-card:hover {
+    transform: translateY(-5px);
+}
+.featured-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.card-body {
+    padding: 15px;
+}
+.card-body h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #f1f5f9;
+}
+.card-body p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+.price {
+    color: #22c55e; /* green price */
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #22c55e;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.btn:hover {
+    background: #16a34a;
+}
+
+/* Call to Action */
+.cta {
+    background: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+.cta h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: #22c55e;
+}
+.cta p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #cbd5e1;
+}
+.btn-primary {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #22c55e;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.btn-primary:hover {
+    background: #16a34a;
+}
