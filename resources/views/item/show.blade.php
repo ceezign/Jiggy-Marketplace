@@ -1,4 +1,3 @@
-<div>
-    to show item
-    <!-- It is not the man who has too little, but the man who craves more, that is poor. - Seneca -->
-</div>
+<x-app-layout>
+    pass
+</x-app-layout>

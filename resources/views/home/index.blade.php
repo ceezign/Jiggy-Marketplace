@@ -35,6 +35,7 @@
             </div>
         </div>
     </section>
+    <x-search-form />
 
     <!-- Featured Listings -->
     <section class="featured">
@@ -51,6 +52,7 @@
                     </div>
                 </div>
             @endforeach --}}
+            <x-item />
         </div>
     </section>
 

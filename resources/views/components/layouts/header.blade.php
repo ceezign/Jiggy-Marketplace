@@ -1,7 +1,12 @@
 <header class="mp-header">
   <div class="mp-container">
     <!-- Logo -->
-    <a href="#" class="mp-logo">Jiggy-Marketplace</a>
+    <a href="#" class="mp-footer-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" class="mp-footer-logo-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path d="M12 2l9 4.5v11L12 22 3 17.5v-11L12 2z"/>
+        </svg>
+        <span>Jiggy-Marketplace</span>
+      </a>
 
     <!-- Search (desktop only) -->
     <form class="mp-search" action="#" method="GET">
