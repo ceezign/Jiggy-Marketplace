@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Wishlist">
   <div class="wishlist-container">
       <h2 class="wishlist-title">My Wishlist</h2>
 

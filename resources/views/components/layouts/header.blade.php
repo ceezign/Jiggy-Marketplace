@@ -25,6 +25,14 @@
 
     <!-- Account -->
     <div class="mp-account">
+      <button class="mp-account-btn">Register ▾</button>
+      <div class="mp-account-menu" hidden>
+        <a href="#">Signup</a>
+        <a href="#">Login</a>
+      </div>
+    </div>
+
+    <div class="mp-account">
       <button class="mp-account-btn">My Account ▾</button>
       <div class="mp-account-menu" hidden>
         <a href="#">Profile</a>

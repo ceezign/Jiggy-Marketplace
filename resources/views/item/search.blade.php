@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Item Search">
     <section>
     <div class="search-advanced-wrapper">
     <form action="#" method="GET" class="search-advanced-form">

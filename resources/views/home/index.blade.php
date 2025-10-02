@@ -1,6 +1,4 @@
 <x-app-layout title="Home Page">
-    
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -35,7 +33,7 @@
             </div>
         </div>
     </section>
-    <x-search-form />
+    
 
     <!-- Featured Listings -->
     <section class="featured">

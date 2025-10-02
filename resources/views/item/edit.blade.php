@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Item Edit">
   <div class="form-container">
       <h2 class="form-title">Post an Item</h2>
       <form action="/items/store" method="POST" enctype="multipart/form-data" class="item-form">
