@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -27,6 +28,7 @@ class User extends Authenticatable
         'google_id',
         'facebook_id',
         'password',
+        'role',
 
     ];
 
@@ -74,9 +76,25 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function messages(): HasMany
+    public function sentMessages(): HasMany
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function receiveMessages(): HasMany
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+
+    public function payments(): HasManyThrough
+    {
+        return $this->hasManyThrough(Payment::class, Order::class);
     }
 
     public function cart(): HasOne
@@ -89,8 +107,7 @@ class User extends Authenticatable
         return $this->hasOne(Setting::class);
     }
 
-    public function payment(): HasOne
-    {
-        return $this->hasOne(Payment::class);
-    }
+    
+
+    
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\item;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'item_id' => Item::inRandomOrder()->first()->id,
+            'rating' => fake()->numberBetween(1, 5),
+            'comment' => fake()->text(),
+
         ];
     }
 }

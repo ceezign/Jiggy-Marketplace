@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\User;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,15 @@ class ItemFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::inRandomOrder()->first()->id,
+            'category_id' => Category::inRandomOrder()->first()->id,
+            'name' => fake()->word(2, true),
+            'description' => fake()->paragraph(),
+            'price' => ((int)fake()->randomFloat(2, 1000, 30000)),
+            'quantity' => fake()->numberBetween(1, 10),
+            'image' => fake()->imageUrl(),
+            'status' => fake()->randomElement(['available', 'unavailable'])
+
         ];
     }
 }
