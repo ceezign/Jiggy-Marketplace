@@ -26,58 +26,59 @@ class DatabaseSeeder extends Seeder
         // Reset Faker unique memory
         fake()->unique(true);
 
-        // 1️⃣ Users
+        // Users
         $users = User::factory(10)->create();
 
-        // 2️⃣ Categories
+        // Categories
         $categories = Category::factory(10)->create();
 
-        // 3️⃣ Items (each linked to random category)
+        // Items (each linked to random category)
         $items = Item::factory(40)->create([
             'category_id' => $categories->random()->id,
         ]);
 
-        // 4️⃣ Orders (each linked to random user)
+        // Orders (each linked to random user)
         $orders = Order::factory(20)->create([
             'user_id' => $users->random()->id,
         ]);
 
-        // 5️⃣ OrderItems (each linked to random Order + Item)
+        // OrderItems (each linked to random Order + Item)
         $orderItems = OrderItem::factory(40)->create([
             'order_id' => $orders->random()->id,
             'item_id' => $items->random()->id,
         ]);
 
+        // Carts
         $carts = Cart::factory(5)->create();
 
-        // 6️⃣ CartItems (each linked to random cart + Item)
+        // CartItems (each linked to random cart + Item)
         $cartItems = CartItem::factory(30)->create([
             'cart_id' => $carts->random()->id,
             'item_id' => $items->random()->id,
             
         ]);
 
-        // 7️⃣ Payments (linked to existing Orders + Users)
+        // Payments
         $payments = Payment::factory(20)->create();
 
-        // 8️⃣ Messages (linked to random User)
+        //  Messages (linked to random User)
         $messages = Message::factory(15)->create([
             'sender_id' => $users->random()->id,
             'receiver_id' => $users->random()->id,
         ]);
 
-        // 9️⃣ Notifications (linked to random User)
+        // Notifications (linked to random User)
         $notifications = Notification::factory(15)->create([
             'user_id' => $users->random()->id,
         ]);
 
-        // 🔟 Reviews (linked to random User + Item)
+        // Reviews (linked to random User + Item)
         $reviews = Review::factory(25)->create([
             'user_id' => $users->random()->id,
             'item_id' => $items->random()->id,
         ]);
 
-        // 1️⃣1️⃣ Settings (one per user)
+        // Settings (one per user)
         foreach ($users as $user) {
             Setting::factory()->create([
                 'user_id' => $user->id,
