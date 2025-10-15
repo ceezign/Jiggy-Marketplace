@@ -21,7 +21,9 @@ return new class extends Migration
             $table->integer('quantity')->default(1);
             $table->string('image')->nullable();
             $table->string('status')->default('available');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
+            $table->softDeletes()->nullable();
         });
     }
 
