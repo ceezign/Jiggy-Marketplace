@@ -33,24 +33,24 @@
             </div>
         </div>
     </section>
-    
+
 
     <!-- Featured Listings -->
     <section class="featured">
         <h2>Featured Listings</h2>
         <div class="featured-grid">
-            {{-- @foreach($featured as $item)
-                <div class="featured-card">
-                    <img src="{{ $item->image }}" alt="{{ $item->title }}">
-                    <div class="card-body">
-                        <h3>{{ $item->title }}</h3>
-                        <p>{{ Str::limit($item->description, 60) }}</p>
-                        <p class="price">${{ $item->price }}</p>
-                        <a href="#" class="btn">View Details</a>
-                    </div>
+            @foreach($items as $item)
+                <x-item :$item />
+            <!-- <div class="featured-card">
+                <img src="{{ $item->image }}" alt="{{ $item->title }}">
+                <div class="card-body">
+                    <h3>{{ $item->title }}</h3>
+                    <p>{{ Str::limit($item->description, 60) }}</p>
+                    <p class="price">${{ $item->price }}</p>
+                    <a href="#" class="btn">View Details</a>
                 </div>
-            @endforeach --}}
-            <x-item />
+            </div> -->
+            @endforeach
         </div>
     </section>
 
@@ -60,7 +60,6 @@
         <p>Turn your unused items into cash in just a few clicks.</p>
         <a href="#" class="btn-primary">Post an Ad</a>
     </section>
-    
+
 
 </x-app-layout>
-

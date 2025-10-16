@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -11,7 +12,13 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return view('item.my-cart');
+        $items = User::find(1)
+            ->items()
+            ->with(['category', 'reviews', 'orderItems', 'cartItems'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('item.index', ['items' => $items] );
     }
 
     /**
@@ -59,7 +66,12 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = User::find(1)
+            ->items()
+            ->findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('items')->with('success', 'item deleted successfully.');
     }
 
     public function search()

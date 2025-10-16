@@ -15,11 +15,15 @@
         <thead>
           <tr>
             <th>Item</th>
-            <th>Title</th>
+            <th>Name</th>
             <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
+            <!-- <th>Quantity</th> -->
+            <th>Reviews</th>
+            <th>Date Created</th>
+            <!-- <th>Total</th> -->
+            <th>Edit</th>
             <th>Action</th>
+          
           </tr>
         </thead>
         <tbody>
@@ -30,19 +34,23 @@
               </td>
               <td>{{ $item->name }}</td>
               <td>₦{{ number_format($item->price, 2) }}</td>
-              <td>₦{{ $item->reviews->count() }}</td>
-              <td>₦{{ $item->created_at->date_format('d M, Y') }}</td>
-              <td>
+              <td>{{ $item->reviews->count() }}</td>
+              <td>{{ $item->created_at->format('d M, Y') }}</td>
+              <!-- <td>
                 <form action="/cart/edit/{{ $item->id}}" method="POST">
                   @csrf
                   <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" class="qty-input">
                   <button type="submit" class="btn update-btn">Update</button>
                 </form>
-              </td>
-              <td>₦{{ number_format($item->price * $item->quantity, 2) }}</td>
+              </td> -->
+              <!-- <td>₦{{ number_format($item->price * $item->quantity, 2) }}</td> -->
               <td>
-                <a href="/cart/remove/{{ $item->id }}" class="btn remove-btn">Remove</a>
+                <a href="/item/edit/{{ $item->id }}" class="btn remove-btn">Edit</a>
               </td>
+              <td>
+                <a href="/item/delete/{{ $item->id }}" class="btn remove-btn">Remove</a>
+              </td>
+              
             </tr>
           @endforeach
         </tbody>

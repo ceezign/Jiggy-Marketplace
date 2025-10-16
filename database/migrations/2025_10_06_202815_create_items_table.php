@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('status')->default('available');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
-            $table->softDeletes()->nullable();
+            $table->softDeletes();
         });
     }
 
