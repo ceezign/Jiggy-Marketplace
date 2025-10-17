@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoginController;
@@ -18,6 +19,11 @@ Route::resource('item', ItemController::class);
 Route::get('/signup', [SignupController::class, 'signup'])->name('signup');
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{itemId}', [CartController::class, 'addToCart'])->name('cart.addToCart');
+Route::get('/cart/update/{cartItemId}', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+Route::get('/cart/remove/{cartItemId}', [CartController::class, 'removeFromCart'])->name('cart.removeFromCart');
 
 
 

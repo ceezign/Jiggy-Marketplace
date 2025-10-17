@@ -45,10 +45,10 @@
               </td> -->
               <!-- <td>₦{{ number_format($item->price * $item->quantity, 2) }}</td> -->
               <td>
-                <a href="/item/edit/{{ $item->id }}" class="btn remove-btn">Edit</a>
+                <a href="/item/{{ $item->id }}/edit" class="btn remove-btn">Edit</a>
               </td>
               <td>
-                <a href="/item/delete/{{ $item->id }}" class="btn remove-btn">Remove</a>
+                <a href="/item/{{ $item->id }}" class="btn remove-btn">Remove</a>
               </td>
               
             </tr>

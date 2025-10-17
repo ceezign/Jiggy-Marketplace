@@ -3,19 +3,19 @@
 <section>
 
   <div class="cart-container">
-    <h2 class="cart-title">My Items</h2>
+    <h2 class="cart-title">My Shoppping Cart</h2>
 
-    @if($items->isEmpty())
+    @if($cartItems->isEmpty())
       <div class="text-center">
-        <h5>You have not created any items yet.</h5>
-        <a href="{{ route('items.create') }}" class="btn btn-primary mt-3">Add New Item</a>
+        <h5>Your cart is empty</h5>
+        <a href="{{ route('home') }}" class="btn btn-primary mt-3">Continue Shopping</a>
       </div>
     @else
       <table class="cart-table">
         <thead>
           <tr>
             <th>Item</th>
-            <th>Title</th>
+            <th>name</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Total</th>
@@ -23,25 +23,23 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($items as $item)
+          @foreach($cartItems as $cart)
             <tr>
               <td>
-                <img src="{{ $item->image }}" alt="{{ $item->name }}" class="cart-img">
+                <img src="{{ $cart->item->image }}" alt="{{ $cart->item->name }}" class="cart-img">
               </td>
-              <td>{{ $item->name }}</td>
-              <td>₦{{ number_format($item->price, 2) }}</td>
-              <td>₦{{ $item->reviews->count() }}</td>
-              <td>₦{{ $item->created_at->date_format('d M, Y') }}</td>
+              <td>{{ $cart->item->name }}</td>
+              <td>₦{{ number_format($cart->item->price, 2) }}</td>
               <td>
-                <form action="/cart/edit/{{ $item->id}}" method="POST">
+                <form action="/cart/update/{cartItemId}" method="POST">
                   @csrf
-                  <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" class="qty-input">
+                  <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" class="qty-input">
                   <button type="submit" class="btn update-btn">Update</button>
                 </form>
               </td>
-              <td>₦{{ number_format($item->price * $item->quantity, 2) }}</td>
+              <td>₦{{ number_format($cart->item->price * $cart->quantity, 2) }}</td>
               <td>
-                <a href="/cart/remove/{{ $item->id }}" class="btn remove-btn">Remove</a>
+                <a href="/cart/remove/{cartItemId}" class="btn remove-btn">Remove</a>
               </td>
             </tr>
           @endforeach
