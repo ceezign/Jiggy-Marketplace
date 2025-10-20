@@ -1,9 +1,10 @@
 <x-app-layout title="Item Edit">
   <div class="form-container">
       <h2 class="form-title">Post an Item</h2>
-      <form action="/items/store" method="POST" enctype="multipart/form-data" class="item-form">
+      <form action="{{ route('items.update', $item->id) }}" method="POST" enctype="multipart/form-data" class="item-form">
         <!-- Laravel CSRF Token -->
         @csrf 
+        @method('PUT')
 
         <div class="form-group">
           <label for="title">Item Title</label>
@@ -13,11 +14,11 @@
         <div class="form-group">
           <label for="category">Category</label>
           <select id="category" name="category" required>
-            <option value="">-- Select Category --</option>
-            <option value="clothes">Clothes</option>
-            <option value="electronics">Electronics</option>
-            <option value="books">Books</option>
-            <option value="furniture">Furniture</option>
+              <option value="">-- Select Category --</option>
+              <option value="clothes">Clothes</option>
+              <option value="electronics">Electronics</option>
+              <option value="books">Books</option>
+              <option value="furniture">Furniture</option>
           </select>
         </div>
 

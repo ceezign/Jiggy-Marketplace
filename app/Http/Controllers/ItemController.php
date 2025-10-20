@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,7 +20,7 @@ class ItemController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('item.index', ['items' => $items] );
+        return view('items.index', ['items' => $items] );
     }
 
     /**
@@ -26,7 +28,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('item.create');
+        $categories = Category::all();
+        return view('items.create', ['categories' => $categories]);
     }
 
     /**
@@ -34,7 +37,19 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'categories_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg',
+            'description' => 'nullable|string',
+        ]);
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('items', 'public');
+        }
+        Item::create($validated);
+
+        return redirect()->route('items.index')->with('Success', 'Item created successfully!');
     }
 
     /**
@@ -42,7 +57,8 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        return view('item.show');
+        $item = Item::findOrFail($id);
+        return view('items.show', ['items' => $item]);
     }
 
     /**
@@ -50,7 +66,9 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        return view('item.edit');
+        $item = Item::findOrFail($id);
+        $categories = Category::all();
+        return view('items.edit', ['items' => $item, 'categories' => $categories]);
     }
 
     /**
@@ -58,7 +76,21 @@ class ItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = Item::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'categories_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg',
+            'description' => 'nullable|string',
+        ]);
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('items', 'public');
+        }
+        $item->update($validated);
+
+        return redirect()->route('items.index')->with('suceess', 'Item updated succesfully!');
     }
 
     /**
@@ -74,13 +106,24 @@ class ItemController extends Controller
         return redirect()->route('items')->with('success', 'item deleted successfully.');
     }
 
-    public function search()
+    public function search(Request $request)
     {
-        return view('item.search');
+        $query = $request->input('query');
+        $items = Item::with('category')
+            ->where('name', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->orWhereHas('category', function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%");
+            })
+            ->orderBy('created_by', 'desc');
+            
+            
+        
+        return view('items.search', ['items' => $items, 'query' => $query]);
     }
 
     public function wishlist()
     {
-        return view('item.wishlist');
+        return view('items.wishlist');
     }
 }

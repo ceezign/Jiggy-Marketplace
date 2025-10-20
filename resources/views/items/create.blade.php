@@ -6,12 +6,12 @@
                 <h2 class="page-title">Post a New Item</h2>
                 <p class="subtitle">Fill in the details below to add your item to the marketplace.</p>
 
-                <form action="#" method="POST" enctype="multipart/form-data" class="create-form">
+                <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data" class="create-form">
                     @csrf
 
                     <div class="form-group">
-                        <label for="title">Item Title <span class="required">*</span></label>
-                        <input type="text" id="title" name="title" placeholder="e.g. iPhone 14 Pro" required>
+                        <label for="title">Item Name <span class="required">*</span></label>
+                        <input type="text" id="title" name="name" placeholder="e.g. iPhone 14 Pro" required>
                     </div>
 
                     <div class="form-group">
