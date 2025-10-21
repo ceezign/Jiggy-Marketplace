@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -18,7 +19,7 @@ class ItemController extends Controller
             ->items()
             ->with(['category', 'reviews', 'orderItems', 'cartItems'])
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10);
 
         return view('items.index', ['items' => $items] );
     }
@@ -122,8 +123,24 @@ class ItemController extends Controller
         return view('items.search', ['items' => $items, 'query' => $query]);
     }
 
+    public function addToWishlist($id)
+    {
+        Wishlist::firstOrCreate([
+            'item_id' => $id,
+        ]);
+
+        return back()->with('success', 'Item added to wishlist!');
+    }
+
     public function wishlist()
     {
-        return view('items.wishlist');
+        $wishlist = Wishlist::with('item')->latest()->get();
+        return view('items.wishlist', ['wishlist' => $wishlist]);
+    }
+
+    public function removeFromWishlist($id)
+    {
+        Wishlist::where('item_id', $id)->delete();
+        return back()->with('success', 'Item remove from wishlist!');
     }
 }

@@ -2,7 +2,7 @@
   <div class="wishlist-container">
       <h2 class="wishlist-title">My Wishlist</h2>
 
-      {{-- @if(count($wishlistItems) > 0) --}}
+      @if($wishlist->count() > 0) 
         <table class="wishlist-table">
           <thead>
             <tr>
@@ -13,28 +13,25 @@
             </tr>
           </thead>
           <tbody>
-            {{-- @foreach($wishlistItems as $item) --}}
+           @foreach($wishlist as $wish)
             <tr>
               <td>
                 <img src="#" class="wishlist-img">
-                {{-- <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="wishlist-img"> --}}
+                <img src="{{ $wish->image) }}" alt="{{ $wish->name }}" class="wishlist-img">
               </td>
-              {{-- <td>{{ $item->title }}</td> --}}
-              <td>title</td>
-              <td>₦1222</td>
-              {{-- <td>₦{{ number_format($item->price, 2) }}</td> --}}
+              <td>{{ $wish->name }}</td>
+              <td>₦{{ number_format($wish->price, 2) }}</td>
               <td>
-                <a href="/wishlist/remove/#" class="btn remove-btn">Remove</a>
-                <a href="/cart/add/#" class="btn add-cart-btn">Add to Cart</a>
-                {{-- <a href="/cart/add/{{ $item->id }}" class="btn add-cart-btn">Add to Cart</a> --}}
+                <a href="{{ route('item.removeFromWishlist', $item->id) }}" class="btn remove-btn">Remove</a>
+                <a href="{{ route('item.addToWishlist', $item->id ) }}" class="btn add-cart-btn">Add to Cart</a>
               </td>
             </tr>
-            {{-- @endforeach --}}
+            @endforeach
           </tbody>
         </table>
-      {{-- @else
+       @else
         <p class="empty-wishlist">Your wishlist is empty.</p>
-      @endif --}}
+      @endif
 
     </div>
 </x-app-layout>
