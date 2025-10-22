@@ -27,6 +27,7 @@
               </td>
             </tr>
             @endforeach
+            <div class="pagination-links">{{ $wishlist->links() }}</div>
           </tbody>
         </table>
        @else

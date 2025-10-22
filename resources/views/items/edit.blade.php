@@ -1,7 +1,7 @@
 <x-app-layout title="Item Edit">
   <div class="form-container">
       <h2 class="form-title">Post an Item</h2>
-      <form action="{{ route('items.update', $item->id) }}" method="POST" enctype="multipart/form-data" class="item-form">
+      <form action="{{ route('item.update') }}" method="POST" enctype="multipart/form-data" class="item-form">
         <!-- Laravel CSRF Token -->
         @csrf 
         @method('PUT')

@@ -134,7 +134,7 @@ class ItemController extends Controller
 
     public function wishlist()
     {
-        $wishlist = Wishlist::with('item')->latest()->get();
+        $wishlist = Wishlist::with('item')->latest()->paginate(10);
         return view('items.wishlist', ['wishlist' => $wishlist]);
     }
 

@@ -53,6 +53,7 @@
               
             </tr>
           @endforeach
+          <div class="pagination-links">{{ $items->links() }}</div>
         </tbody>
       </table>
 
