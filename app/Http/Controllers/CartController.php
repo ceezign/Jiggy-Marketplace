@@ -20,7 +20,7 @@ class CartController extends Controller
             ->get() : collect();
 
         
-        return view('item.my-cart', ['cartItems' => $cartItems]);
+        return view('items.my-cart', ['cartItems' => $cartItems]);
 
     }
 

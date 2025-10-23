@@ -12,16 +12,19 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/item/search', [ItemController::class, 'search'])->name('search');
 
-Route::get('/item/wishlist/{$id}', [ItemController::class, 'addToWishlist'])->name('item.addToWishlist');
+// wiahlist
+Route::post('/item/wishlist/{id}', [ItemController::class, 'addToWishlist'])->name('item.addToWishlist');
 Route::get('/item/wishlist', [ItemController::class, 'wishlist'])->name('item.wishlist');
-Route::get('/item/wishlist/{$id}', [ItemController::class, 'removeFromWishlist'])->name('item.removeFromWishlist');
+Route::get('/item/wishlist/{id}', [ItemController::class, 'removeFromWishlist'])->name('item.removeFromWishlist');
 
+// Items
 Route::resource('item', ItemController::class);
 
+// Auth
 Route::get('/signup', [SignupController::class, 'signup'])->name('signup');
-
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 
+//  Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{itemId}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 Route::put('/cart/update/{cartItemId}', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');

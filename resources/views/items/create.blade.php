@@ -6,7 +6,7 @@
                 <h2 class="page-title">Post a New Item</h2>
                 <p class="subtitle">Fill in the details below to add your item to the marketplace.</p>
 
-                <form action="{{ route('item.store') }}" method="POST" enctype="multipart/form-data" class="create-form">
+                <form action="{{ route('item.store' ) }}" method="POST" enctype="multipart/form-data" class="create-form">
                     @csrf
 
                     <div class="form-group">

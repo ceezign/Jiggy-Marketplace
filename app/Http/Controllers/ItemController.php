@@ -59,7 +59,7 @@ class ItemController extends Controller
     public function show(string $id)
     {
         $item = Item::findOrFail($id);
-        return view('items.show', ['items' => $item]);
+        return view('items.show', ['item' => $item]);
     }
 
     /**
@@ -69,7 +69,7 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
         $categories = Category::all();
-        return view('items.edit', ['items' => $item, 'categories' => $categories]);
+        return view('items.edit', ['item' => $item, 'categories' => $categories]);
     }
 
     /**
@@ -123,7 +123,7 @@ class ItemController extends Controller
         return view('items.search', ['items' => $items, 'query' => $query]);
     }
 
-    public function addToWishlist($id)
+    public function addToWishlist(string $id)
     {
         Wishlist::firstOrCreate([
             'item_id' => $id,
