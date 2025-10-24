@@ -10,7 +10,7 @@ use function Laravel\Prompts\search;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/item/search', [ItemController::class, 'search'])->name('search');
+Route::get('/item/search', [ItemController::class, 'search'])->name('item.search');
 
 // wiahlist
 Route::post('/item/wishlist/{id}', [ItemController::class, 'addToWishlist'])->name('item.addToWishlist');

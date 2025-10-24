@@ -1,7 +1,7 @@
 <x-app-layout title="Item Search">
     <section>
     <div class="search-advanced-wrapper">
-    <form action="{{ route('items.search') }}" method="GET" class="search-advanced-form">
+    <form action="{{ route('item.search') }}" method="GET" class="search-advanced-form">
 
         <!-- Keyword -->
         <div class="form-group">

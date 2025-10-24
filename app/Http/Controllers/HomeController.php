@@ -13,7 +13,7 @@ class HomeController extends Controller
         $items = Item::where('published_at', '<', now())
             ->with('category', 'user', 'reviews', 'orderItems', 'cartItems')
             ->orderBy('published_at', 'desc')
-            ->limit(30)
+            ->limit(10)
             ->get();
 
             

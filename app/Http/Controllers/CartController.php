@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,16 +31,27 @@ class CartController extends Controller
 
         $cart = $user->cart ?: $user->cart()->create();
 
-        if ($cart->cartItems()->where('item_id', $itemId)->exists()) {
-            return redirect()->back()->with('message', 'item already in cart');
+        $item = Item::findOrFail($itemId);
+
+        $cartItem = $cart->cartItems()->where('item_id', $itemId)->first();
+
+        if ($cartItem) {
+            return redirect()->back()->with('message', 'Item already in cart');
         }
+
+        // if ($cart->cartItems()->where('item_id', $itemId)->exists()) {
+        //     return redirect()->back()->with('message', 'item already in cart');
+        // }
+        $quantity = 1;
+        $subtotal = $item->price * $quantity;
 
         $cart->cartItems()->create([
             'item_id' => $itemId,
-            'quantity' => 1
+            'quantity' => $quantity,
+            'subtotal' => $subtotal,
         ]);
 
-        return redirect()->back()->with('message', 'item added to cart successfully');
+        return redirect()->route('cart.index')->with('message', 'item added to cart successfully');
     }
 
     public function removeFromCart($cartItemId)

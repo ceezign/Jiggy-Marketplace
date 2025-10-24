@@ -4,7 +4,7 @@
         <div class="hero-content">
             <h1>Welcome to Jiggy-Marketplace</h1>
             <p>Buy and Sell anything, anywhere, anytime.</p>
-            <form action="#" method="GET" class="search-form">
+            <form action="{{ route('item.search') }}" method="GET" class="search-form">
                 <input type="text" name="q" placeholder="Search for items...">
                 <button type="submit">Search</button>
             </form>
@@ -58,7 +58,7 @@
     <section class="cta">
         <h2>Start Selling Today</h2>
         <p>Turn your unused items into cash in just a few clicks.</p>
-        <a href="#" class="btn-primary">Post an Ad</a>
+        <a href="{{ route('item.create') }}" class="btn-primary">Post an Ad</a>
     </section>
 
 

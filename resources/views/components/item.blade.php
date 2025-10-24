@@ -15,7 +15,7 @@
 
 
       <div class="item-actions">
-        <a href="/items/{{ $item->id }}/edit" class="btn edit-btn">Edit</a>
+        <a href="{{ route('item.edit', $item->id ) }}" class="btn edit-btn">Edit</a>
         <form action="{{ route('cart.addToCart', $item->id) }}" method="POST" style="display:inline;">
           @csrf
           <button type="submit" class="btn buy-btn">Buy Now</button>

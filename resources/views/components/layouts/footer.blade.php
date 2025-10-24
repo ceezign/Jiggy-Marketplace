@@ -2,7 +2,7 @@
   <div class="mp-footer-container">
     <!-- Column 1: Logo + About -->
     <div class="mp-footer-col">
-      <a href="#" class="mp-footer-logo">
+      <a href="{{ route('home') }}" class="mp-footer-logo">
         <svg xmlns="http://www.w3.org/2000/svg" class="mp-footer-logo-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path d="M12 2l9 4.5v11L12 22 3 17.5v-11L12 2z"/>
         </svg>
@@ -17,9 +17,8 @@
     <div class="mp-footer-col">
       <h4>Explore</h4>
       <ul>
-        <li><a href="#">Cars</a></li>
         <li><a href="#">Shop</a></li>
-        <li><a href="#">Cart</a></li>
+        <li><a href="{{ route('cart.index')}}">Cart</a></li>
         <li><a href="#">About Us</a></li>
       </ul>
     </div>
@@ -46,7 +45,7 @@
   </div>
 
   <div class="mp-footer-bottom">
-    <p>&copy; {{ date('Y') }} Marketplace. All rights reserved.</p>
+    <p>&copy; {{ date('Y') }} Jiggy-Marketplace. All rights reserved.</p>
     <div class="mp-footer-socials">
       <a href="#"><i class="fab fa-facebook"></i></a>
       <a href="#"><i class="fab fa-twitter"></i></a>

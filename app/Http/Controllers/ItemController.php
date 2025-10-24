@@ -40,7 +40,7 @@ class ItemController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'categories_id' => 'required|exists:categories,id',
+            'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpg,png,jpeg',
             'description' => 'nullable|string',
@@ -48,9 +48,11 @@ class ItemController extends Controller
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('items', 'public');
         }
+
+        $validated['user_id' ] = 1;
         Item::create($validated);
 
-        return redirect()->route('items.index')->with('Success', 'Item created successfully!');
+        return redirect()->route('item.index')->with('Success', 'Item created successfully!');
     }
 
     /**
