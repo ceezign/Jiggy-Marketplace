@@ -1,4 +1,4 @@
-<x-app-layout title="My Cart">
+<x-app-layout title="My Items">
 
 <section>
 
@@ -8,7 +8,7 @@
     @if($items->isEmpty())
       <div class="text-center">
         <h5>You have not created any items yet.</h5>
-        <a href="{{ route('items.create') }}" class="btn btn-primary mt-3">Add New Item</a>
+        <a href="{{ route('item.create') }}" class="btn btn-primary mt-3">Add New Item</a>
       </div>
     @else
       <table class="cart-table">
@@ -45,10 +45,14 @@
               </td> -->
               <!-- <td>₦{{ number_format($item->price * $item->quantity, 2) }}</td> -->
               <td>
-                <a href="/item/{{ $item->id }}/edit" class="btn remove-btn">Edit</a>
+                <a href="{{ route('item.edit', $item->id ) }}" class="btn remove-btn">Edit</a>
               </td>
               <td>
-                <a href="/item/{{ $item->id }}" class="btn remove-btn">Remove</a>
+                <form action="{{ route('item.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn remove-btn">Remove</button>
+                </form>
               </td>
               
             </tr>

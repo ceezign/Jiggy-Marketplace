@@ -16,7 +16,7 @@
                     </div>
                 @endif
 
-                {{-- ❌ Error Messages --}}
+                {{--  Error Messages --}}
                 @if($errors->any())
                     <div class="alert alert-danger" style="background: #f8d7da; color: #842029; padding: 10px 15px; border-radius: 6px; margin-bottom: 15px; border: 1px solid #f5c2c7;">
                         <ul style="margin: 0; padding-left: 20px;">

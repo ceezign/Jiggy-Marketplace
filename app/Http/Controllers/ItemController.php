@@ -83,17 +83,19 @@ class ItemController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'categories_id' => 'required|exists:categories,id',
+            'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
             'description' => 'nullable|string',
         ]);
+
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('items', 'public');
         }
+
         $item->update($validated);
 
-        return redirect()->route('items.index')->with('suceess', 'Item updated succesfully!');
+        return redirect()->route('item.index')->with('success', 'Item updated successfully!');
     }
 
     /**
@@ -106,7 +108,7 @@ class ItemController extends Controller
             ->findOrFail($id);
         $item->delete();
 
-        return redirect()->route('items')->with('success', 'item deleted successfully.');
+        return redirect()->route('item.index')->with('success', 'item deleted successfully.');
     }
 
     public function search(Request $request)
