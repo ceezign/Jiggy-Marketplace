@@ -114,22 +114,47 @@ class ItemController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
+        $categoryId = $request->input('category');
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+
         $items = Item::with('category')
-            ->where('name', 'LIKE', "%{$query}%")
-            ->orWhere('description', 'LIKE', "%{$query}%")
-            ->orWhereHas('category', function ($q) use ($query) {
-                $q->where('name', 'LIKE', "%{$query}%");
+            ->when($query, function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%")
+                ->orWhere('description', 'LIKE', "%{$query}%")
+                ->orWhereHas('category', function ($q2) use ($query) {
+                    $q2->where('name', 'LIKE', "%{$query}%");
+                });
             })
-            ->orderBy('created_by', 'desc');
-            
-            
-        
-        return view('items.search', ['items' => $items, 'query' => $query]);
+            ->when($categoryId, function ($q) use ($categoryId) {
+                $q->where('category_id', $categoryId);
+            })
+            ->when($minPrice, function ($q) use ($minPrice) {
+                $q->where('price', '>=', $minPrice);
+            })
+            ->when($maxPrice, function ($q) use ($maxPrice) {
+                $q->where('price', '<=', $maxPrice);
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $categories = Category::all();
+
+        return view('items.search', [
+            'items' => $items,
+            'categories' => $categories,
+            'query' => $query,
+            'categoryId' => $categoryId,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice,
+        ]);
     }
 
-    public function addToWishlist(string $id)
+
+    public function addToWishlist( $id)
     {
         Wishlist::firstOrCreate([
+            'user_id' => 1,
             'item_id' => $id,
         ]);
 
@@ -138,13 +163,18 @@ class ItemController extends Controller
 
     public function wishlist()
     {
-        $wishlist = Wishlist::with('item')->latest()->paginate(10);
+        $wishlist = Wishlist::with('item')
+            ->where('user_id', 1)
+            ->latest()
+            ->paginate(10);
         return view('items.wishlist', ['wishlist' => $wishlist]);
     }
 
     public function removeFromWishlist($id)
     {
-        Wishlist::where('item_id', $id)->delete();
+        Wishlist::where('user_id', 1)
+            ->where('item_id', $id)
+            ->delete();
         return back()->with('success', 'Item remove from wishlist!');
     }
 }

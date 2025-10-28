@@ -14,7 +14,7 @@
       <table class="cart-table">
         <thead>
           <tr>
-            <th>Item</th>
+            <th>Image</th>
             <th>name</th>
             <th>Price</th>
             <th>Quantity</th>
@@ -33,7 +33,7 @@
               <td>
                 <form action="{{ route('cart.updateQuantity', $cartItem->id) }}" method="POST">
                   @csrf
-                  @method('PATCH')
+                  @method('PUT')
                   <input type="number" name="quantity" value="{{ $cartItem->quantity }}" min="1" class="qty-input">
                   <button type="submit" class="btn update-btn">Update</button>
                 </form>

@@ -1,6 +1,5 @@
 <x-app-layout title="Item Show">
     
-
 <section>
 <div class="item-container">
     <div class="item-card">

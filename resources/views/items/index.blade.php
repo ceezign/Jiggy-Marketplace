@@ -14,7 +14,7 @@
       <table class="cart-table">
         <thead>
           <tr>
-            <th>Item</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Price</th>
             <!-- <th>Quantity</th> -->
