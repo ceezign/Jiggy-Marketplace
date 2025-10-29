@@ -1,5 +1,6 @@
 @props(['item'])
 
+
 <div class="item-container">
     <div class="item-image">
       <a href="{{ route('item.show', $item) }}">
@@ -15,7 +16,7 @@
 
 
       <div class="item-actions">
-        <form action="{{ route('item.addToWishlist', $item->id) }}" method="POST" style="display:inline;">
+        <form action="{{ route('item.addToWishlist',  $item->id) }}" method="POST" style="display:inline;">
           @csrf
           <button type="submit" class="btn edit-btn">Add to Wishlist</button>
         </form>

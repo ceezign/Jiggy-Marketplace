@@ -20,7 +20,7 @@
     <nav class="mp-nav">
       <a href="{{ route('item.index') }}">My Items</a>
       <a href="{{ route('cart.index') }}">Cart</a>
-      <a href="{{ route('item.addToWishlist')}}">Wishlists</a>
+      <a href="{{ route('item.wishlist')}}">Wishlists</a>
       
     </nav>
 
@@ -70,7 +70,7 @@
     <a href="{{ route('signup') }}">Register</a>
     <a href="{{ route('item.index') }}">My Items</a>
     <a href="{{ route('cart.index') }}">Cart</a>
-    <a href="{{ route('item.addToWishlist')}}">Wishlists</a>
+    <a href="{{ route('item.wishlist')}}">Wishlists</a>
     <hr>
     <!-- <a href="#">Profile</a>
     <a href="{{ route('cart.index') }}">Orders</a>

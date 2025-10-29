@@ -6,8 +6,8 @@
         <table class="wishlist-table">
           <thead>
             <tr>
-              <th>Item</th>
-              <th>Title</th>
+              <th>Image</th>
+              <th>name</th>
               <th>Price</th>
               <th>Actions</th>
             </tr>
@@ -16,17 +16,17 @@
            @foreach($wishlist as $wish)
             <tr>
               <td>
-                <img src="{{ $wish->image }}" alt="{{ $wish->name }}" class="wishlist-img">
+                <img src="{{ $wish->item->image }}" alt="{{ $wish->item->name }}" class="wishlist-img">
               </td>
-              <td>{{ $wish->name }}</td>
-              <td>₦{{ number_format($wish->price, 2) }}</td>
+              <td>{{ $wish->item->name }}</td>
+              <td>₦{{ number_format($wish->item->price, 2) }}</td>
               <td>
-                <form action="{{ route('item.removeFromWishlist', $wish->id) }}" method="POST" style="display:inline;">
+                <form action="{{ route('item.removeFromWishlist', $wish->item->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn remove-btn">Remove</button>
                 </form>
-                <form action="{{ route('cart.addToCart', $wish->id) }}" method="POST" style="display:inline;">
+                <form action="{{ route('cart.addToCart', $wish->item->id) }}" method="POST" style="display:inline;">
                     @csrf
                     <button type="submit" class="btn add-cart-btn">Buy Now</button>
                 </form>

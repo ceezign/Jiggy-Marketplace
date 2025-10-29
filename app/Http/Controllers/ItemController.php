@@ -151,15 +151,6 @@ class ItemController extends Controller
     }
 
 
-    public function addToWishlist( $id)
-    {
-        Wishlist::firstOrCreate([
-            'user_id' => 1,
-            'item_id' => $id,
-        ]);
-
-        return back()->with('success', 'Item added to wishlist!');
-    }
 
     public function wishlist()
     {
@@ -170,11 +161,30 @@ class ItemController extends Controller
         return view('items.wishlist', ['wishlist' => $wishlist]);
     }
 
+    public function addToWishlist($id)
+    {
+        $existing = Wishlist::where('user_id', 1)
+            ->where('item_id', $id)
+            ->first();
+
+        if ($existing) {
+            return back()->with('info', 'Item is already in your wishlist!');
+        }
+
+        Wishlist::create([
+            'user_id' => 1,
+            'item_id' => $id,
+        ]);
+
+        return redirect()->route('item.wishlist')->with('success', 'Item added to wishlist!');
+    }
+
+
     public function removeFromWishlist($id)
     {
         Wishlist::where('user_id', 1)
             ->where('item_id', $id)
             ->delete();
-        return back()->with('success', 'Item remove from wishlist!');
+        return redirect()->route('item.wishlist')->with('success', 'Item remove from wishlist!');
     }
 }
