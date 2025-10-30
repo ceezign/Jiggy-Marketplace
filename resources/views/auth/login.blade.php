@@ -6,7 +6,7 @@
         <h2 class="auth-title">Welcome Back</h2>
 
         {{-- Login Form --}}
-        <form method="POST" action="" class="auth-form">
+        <form method="POST" action="{{ route('api.login') }}" class="auth-form">
             @csrf
 
             <div class="form-group">
@@ -34,14 +34,14 @@
 
         {{-- Social Auth Links --}}
         <div class="social-login">
-            <a href="#" class="btn-social google">Google</a>
-            <a href="#" class="btn-social facebook">Facebook</a>
-            <a href="#" class="btn-social github">GitHub</a>
+            <a href="{{ url('auth/google') }}" class="btn-social google">Google</a>
+            <a href="{{ url('auth/facebook') }}" class="btn-social facebook">Facebook</a>
+            <a href="{{ url('auth/github') }}" class="btn-social github">GitHub</a>
         </div>
 
         <p class="auth-footer">
             Don’t have an account? 
-            <a href="#">Sign up here</a>
+            <a href="{{ route('api.login') }}">Sign up here</a>
         </p>
     </div>
 </div>

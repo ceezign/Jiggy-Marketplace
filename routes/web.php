@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\SocialAuthController;
 use Illuminate\Support\Facades\Route;
 use function Laravel\Prompts\search;
 
@@ -21,8 +23,14 @@ Route::delete('/wishlist/remove/{id}', [ItemController::class, 'removeFromWishli
 Route::resource('item', ItemController::class);
 
 // Auth
-Route::get('/signup', [SignupController::class, 'signup'])->name('signup');
-Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('register', [AuthController::class, 'register'])->name('api.register');
+Route::post('login', [AuthController::class, 'login'])->name('api.login');
+Route::middleware('auth.api')->get('/user', [AuthController::class, 'user'])->name('api.user');
+
+// Social Auth
+Route::get('auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])->name('social.redirect');
+Route::get('auth/{provider}/callback', [SocialAuthController::class, 'callback'])->name('social.callback');
+
 
 //  Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

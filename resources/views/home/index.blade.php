@@ -11,6 +11,35 @@
         </div>
     </section>
 
+    <!-- Call to Action -->
+    <section class="cta">
+        <h2>Start Selling Today</h2>
+        <p>Turn your unused items into cash in just a few clicks.</p>
+        <a href="{{ route('item.create') }}" class="btn-primary">Post an Ad</a>
+    </section>
+
+
+
+
+    <!-- Featured Listings -->
+    <section class="featured">
+        <h2>Featured Listings</h2>
+        <div class="featured-grid">
+            @foreach($items as $item)
+                <x-item :$item />
+            <!-- <div class="featured-card">
+                <img src="{{ $item->image }}" alt="{{ $item->title }}">
+                <div class="card-body">
+                    <h3>{{ $item->title }}</h3>
+                    <p>{{ Str::limit($item->description, 60) }}</p>
+                    <p class="price">${{ $item->price }}</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div> -->
+            @endforeach
+        </div>
+    </section>
+
     <!-- Categories -->
     <section class="categories">
         <h2>Browse by Category</h2>
@@ -34,32 +63,6 @@
         </div>
     </section>
 
-
-    <!-- Featured Listings -->
-    <section class="featured">
-        <h2>Featured Listings</h2>
-        <div class="featured-grid">
-            @foreach($items as $item)
-                <x-item :$item />
-            <!-- <div class="featured-card">
-                <img src="{{ $item->image }}" alt="{{ $item->title }}">
-                <div class="card-body">
-                    <h3>{{ $item->title }}</h3>
-                    <p>{{ Str::limit($item->description, 60) }}</p>
-                    <p class="price">${{ $item->price }}</p>
-                    <a href="#" class="btn">View Details</a>
-                </div>
-            </div> -->
-            @endforeach
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="cta">
-        <h2>Start Selling Today</h2>
-        <p>Turn your unused items into cash in just a few clicks.</p>
-        <a href="{{ route('item.create') }}" class="btn-primary">Post an Ad</a>
-    </section>
-
+    
 
 </x-app-layout>
