@@ -22,10 +22,14 @@ Route::delete('/wishlist/remove/{id}', [ItemController::class, 'removeFromWishli
 // Items
 Route::resource('item', ItemController::class);
 
-// Auth
-Route::post('register', [AuthController::class, 'register'])->name('api.register');
-Route::post('login', [AuthController::class, 'login'])->name('api.login');
-Route::middleware('auth.api')->get('/user', [AuthController::class, 'user'])->name('api.user');
+// Auth Form 
+Route::get('/signup', [SignupController::class, 'signup'])->name('signup');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+
+// // Auth
+// Route::post('register', [AuthController::class, 'register'])->name('api.register');
+// Route::post('login', [AuthController::class, 'login'])->name('api.login');
+// Route::middleware('auth.api')->get('/user', [AuthController::class, 'user'])->name('api.user');
 
 // Social Auth
 Route::get('auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])->name('social.redirect');

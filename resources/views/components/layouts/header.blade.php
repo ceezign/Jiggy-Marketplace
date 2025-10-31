@@ -22,6 +22,7 @@
       <a href="{{ route('cart.index') }}">Cart</a>
       <a href="{{ route('item.wishlist')}}">Wishlists</a>
       
+      
     </nav>
 
     <!-- Account -->
@@ -66,11 +67,12 @@
         <a href="#">Logout</a>
       </div>
     </div>
-    <a href="{{ route('login') }}">My Account</a>
+    <a href="#">My Account</a>
     <a href="{{ route('signup') }}">Register</a>
     <a href="{{ route('item.index') }}">My Items</a>
     <a href="{{ route('cart.index') }}">Cart</a>
     <a href="{{ route('item.wishlist')}}">Wishlists</a>
+    
     <hr>
     <!-- <a href="#">Profile</a>
     <a href="{{ route('cart.index') }}">Orders</a>
