@@ -5,12 +5,12 @@
     <div class="auth-card">
         <h2 class="auth-title">Create an Account</h2>
 
-        <form method="POST" action="{{ route('api.register') }}" class="auth-form">
+        <form id="signupForm" class="auth-form">
             @csrf
 
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input id="name" type="text" name="name" value="" required autofocus>
+                <input id="name" type="text" name="name" required autofocus>
             </div>
 
             <div class="form-group">
@@ -44,11 +44,44 @@
 
         <p class="auth-footer">
             Already have an account? 
-            <a href="{{ route('api.login') }}">Login here</a>
+            <a href="{{ route('login') }}">Login here</a>
         </p>
     </div>
 </div>
 </section>
+<script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const password_confirmation = document.getElementById('password_confirmation').value;
+
+        const response = await fetch("{{ route('api.register') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ name, email, password, password_confirmation })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            localStorage.setItem("jwt_token", data.token);
+            alert("Account Created Successfully");
+            window.location.href = "{{ route('home') }}";
+        } else {
+            let msg = data.error || "Registration failed"
+            if (data.errors) {
+                msg = Object.values(data.errors).flat().join("\n");
+            }
+            alert(msg);
+        }
+    });
+</script>
 </x-app-layout>
 
 

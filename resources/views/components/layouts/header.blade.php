@@ -27,7 +27,7 @@
 
     <!-- Account -->
     <div class="mp-account">
-      <button class="mp-account-btn">Register ▾</button>
+      <button class="mp-account-btn">Join Now ▾</button>
       <div class="mp-account-menu" hidden>
         <a href="{{ route('signup') }}">Signup</a>
         <a href="{{ route('login') }}">Login</a>
@@ -37,9 +37,8 @@
     <div class="mp-account">
       <button class="mp-account-btn">My Account ▾</button>
       <div class="mp-account-menu" hidden>
-        <a href="#">Profile</a>
         <a href="{{ route('cart.index') }}">Orders</a>
-        <a href="#">Logout</a>
+        <a href="#" onclick="logoutUser()">Logout</a>
       </div>
     </div>
 
@@ -64,7 +63,7 @@
       <div class="mp-account-menu" hidden>
         <a href="#">Profile</a>
         <a href="{{ route('cart.index') }}">Orders</a>
-        <a href="#">Logout</a>
+        <a href="#" onclick="logoutUser()">Logout</a>
       </div>
     </div>
     <a href="#">My Account</a>
@@ -72,6 +71,7 @@
     <a href="{{ route('item.index') }}">My Items</a>
     <a href="{{ route('cart.index') }}">Cart</a>
     <a href="{{ route('item.wishlist')}}">Wishlists</a>
+    <a href="#" onclick="logoutUser()">Logout</a>
     
     <hr>
     <!-- <a href="#">Profile</a>

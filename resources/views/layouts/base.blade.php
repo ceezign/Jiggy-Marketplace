@@ -41,4 +41,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
+<script>
+  async function logoutUser() {
+    const token = localStorage.getItem("jwt_token");
+    if (!token) {
+      alert("You are not logged in!");
+      return
+    }
+
+    const response = await fetch("{{ route('api.logout') }}", {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json"
+      }
+    });
+
+    if (response.ok) {
+      localStorage.removeItem("jwt_token");
+      alert("Logged out successfully");
+      window.location.href = "{{ route('login') }}";
+    } else {
+      alert("Logout failed");
+    }
+  }
+</script>
 </html>
