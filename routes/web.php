@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -20,11 +21,20 @@ Route::post('/wishlist/add/{id}', [ItemController::class, 'addToWishlist'])->nam
 Route::delete('/wishlist/remove/{id}', [ItemController::class, 'removeFromWishlist'])->name('item.removeFromWishlist');
 
 // Items
+
+Route::get('/item', [ItemController::class, 'index'])->name('item.index');
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
+
 Route::resource('item', ItemController::class);
 
 // Auth Form 
 Route::get('/signup', [SignupController::class, 'signup'])->name('signup');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+
+// Account
+Route::middleware(['auth'])->group(function () {
+    Route::get('/account', [AccountController::class, 'index'])->name('account');
+});
 
 // // Auth
 // Route::post('register', [AuthController::class, 'register'])->name('api.register');
@@ -34,6 +44,11 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 // Social Auth
 Route::get('auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])->name('social.redirect');
 Route::get('auth/{provider}/callback', [SocialAuthController::class, 'callback'])->name('social.callback');
+
+// Social callback handler (stores JWT client-side)
+Route::get('auth/social-callback', function(){ 
+    return view('auth.social-callback'); 
+})->name('social.handle');
 
 
 //  Cart
